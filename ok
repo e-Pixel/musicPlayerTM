@@ -1,0 +1,111 @@
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700   1) from pygame import mixer
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700   2) import tkinter as tk 
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700   3) from functools import partial
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700   4) import os 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700   5) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700   6) '''
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700   7) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700   8) mixer.init() 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700   9) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  10) # command 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  11) mixer.music.load("test.mp3")
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  12) mixer.music.set_volume(0.6)
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  13) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  14) mixer.music.play() # the real one 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  15) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  16) while True:
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  17)     pause = None # useful for later 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  18) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  19)     print("Press 'p' to pause")
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  20)     print("Press 'r' to resume")
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  21)     print("Press 'v' set volume")
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  22)     print("Press 'e' to exit")
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  23)     ch = input("['p','r','v','e']>>>").lower()
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  24)     if ch == "p":
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  25)         if (pause == True):
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  26)             mixer.music.unpause()
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  27)         mixer.music.pause()
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  28)         pause = True
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  29)     elif ch == "r":
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  30)         mixer.music.unpause()
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  31)     elif ch == "v":
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  32)         v = float(input("Enter volume(0 to 1): "))
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  33)         mixer.music.set_volume(v)
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  34)     elif ch == "e":
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  35)         mixer.music.stop()
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  36)         break 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  37)     
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  38)     
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  39) '''
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  40) 
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  41) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  42) class Music:
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  43)     
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  44)     def setUp(self):
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  45)         mixer.init(channels = 1) # channel 1 = stereo 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  46)         print(mixer.get_init(), "(FREQUENCY, FORMAT, CHANNELS)")
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  47) 
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  48)     def writeEvery(self):
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  49)         print("YEP COCK")
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  50) 
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  51)     def actionWithArgument(self, arg):
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  52)         print(arg)
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  53) 
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  54)     def setPointer(self,filename):
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  55)         mixer.music.load("texting/" + filename)
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  56)         mixer.music.play()
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  57) 
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  58) class Application(tk.Frame):
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  59)     starting = Music()
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  60)     starting.setUp()
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  61) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  62)     channel_1 = mixer.Channel(0)
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  63)     channel_2 = mixer.Channel(1)
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  64) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  65)     def __init__(self, master = None):
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  66)         super().__init__(master)
+cd931e8c (Andrés 2021-01-13 17:47:07 -0700  67)         master.title("Spotify 2: Artists\' Strike Back")
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  68)         icon = tk.PhotoImage(file = "spoti.png")
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  69)         master.iconphoto(False, icon)
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  70)         self.master = master
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  71)         self.pack()
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  72)         self.create_widgets()
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  73) 
+^76ae8d7 (Andrés 2021-01-12 19:05:35 -0700  74)     def create_widgets(self):
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  75)         appMusic = Music()
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  76) 
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  77)         def changeTXT(newText):
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  78)             self.theText.delete("1.0", "end")
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  79)             self.theText.insert(tk.END, newText)
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  80) 
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  81)         flist = os.listdir("texting/")
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  82)         lbox = tk.Listbox(self)
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  83)         songToPlay = None # CHANGE THIS (be able to change through songs)
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  84)         toPlay = None
+d754cf53 (Andrés 2021-01-12 20:59:58 -0700  85)         
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  86)         def opensystem(event):
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  87)             x = lbox.curselection()[0]
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  88)             os.system(lbox.get(x))
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  89)         
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  90)         def returnValue(filename):
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  91)             mixer.music.load("texting/" + filename)
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  92)             mixer.music.play()
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  93) 
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  94)         def CurSelet(evt):
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  95)             value=str((lbox.get(tk.ANCHOR)))
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  96)             global songToPlay
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  97)             global toPlay
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  98) 
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700  99)             songToPlay = value
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700 100)             toPlay = partial(appMusic.setPointer, songToPlay) # CHECK OUT LATER
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700 101)             
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700 102)             returnValue(songToPlay)
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700 103) 
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700 104)             changeTXT(f"Currently playing [ {songToPlay} ]")
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700 105)             print(type(songToPlay))
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700 106)             return value
+cd931e8c (Andrés 2021-01-13 17:47:07 -0700 107)         
+cd931e8c (Andrés 2021-01-13 17:47:07 -0700 108)         def pausing():
+cd931e8c (Andrés 2021-01-13 17:47:07 -0700 109)                 mixer.music.pause()
+cd931e8c (Andrés 2021-01-13 17:47:07 -0700 110)                 changeTXT("Currently playing [ Nothing ]")
+128acdc0 (Andrés 2021-01-13 00:02:34 -0700 1
